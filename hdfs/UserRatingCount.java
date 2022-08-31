@@ -1,19 +1,18 @@
-
 // For IO exception handling
 import java.io.IOException;
 
-// Libraries for hadoop map reduce scripts
-import org.apache.hadoop.conf.Configuration;
+import javax.naming.Context;
+
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.MapWritable;
-import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.*;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
+import org.w3c.dom.Text;
 
 public class UserRatingCount {
    public static class Map extends Mapper<LongWritable, Text, Text, IntWritable> {
