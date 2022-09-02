@@ -7,6 +7,7 @@ def loadMovieNames(path):
             fields = line.split('|')
             # movie id : movie name
             movieNames[int(fields[0])] = fields[1]
+    return movieNames
 
 def parseInput(line):
     fields = line.split()
@@ -19,7 +20,7 @@ if __name__ == "__main__":
 
     movieNames = loadMovieNames("/home/maria_dev/ml-100k/u.item")
 
-    file = sc.textFile("hdfs:///user/maria_dev/ml-100k/u.data")
+    file = sc.textFile("hdfs://sandbox-hdp.hortonworks.com:8020/user/maria_dev/ml-100k/u.data")
 
     movieRatings = file.map(parseInput)
 
@@ -30,3 +31,6 @@ if __name__ == "__main__":
     sortedMovieRating = avgRatings.sortBy(lambda x: x[1])
 
     results = sortedMovieRating.take(10)
+
+    for result in results:
+        print(movieNames[result[0]], result[1])
